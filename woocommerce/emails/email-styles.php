@@ -12,7 +12,7 @@
  *
  * @see     https://docs.woocommerce.com/document/template-structure/
  * @package WooCommerce/Templates/Emails
- * @version 3.3.0
+ * @version 4.0.0
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -38,6 +38,7 @@ $body_darker_10  = wc_hex_darker( $body, 10 );
 $base_lighter_20 = wc_hex_lighter( $base, 20 );
 $base_lighter_40 = wc_hex_lighter( $base, 40 );
 $text_lighter_20 = wc_hex_lighter( $text, 20 );
+$text_lighter_40 = wc_hex_lighter( $text, 40 );
 
 // !important; is a gmail hack to prevent styles being stripped if it doesn't like something.
 // body{padding: 0;} ensures proper scale/positioning of the email in the iOS native email app.
@@ -74,7 +75,12 @@ body {
 
 #template_header h1,
 #template_header h1 a {
-	color: #ffffff;
+	color: <?php echo esc_attr( $base_text ); ?>;
+}
+
+#template_header_image img {
+	margin-left: 0;
+	margin-right: 0;
 }
 
 #template_footer td {
@@ -84,7 +90,7 @@ body {
 
 #template_footer #credit {
 	border: 0;
-	color: <?php echo esc_attr( $base_lighter_40 ); ?>;
+	color: <?php echo esc_attr( $text_lighter_40 ); ?>;
 	font-family: "Helvetica Neue", Helvetica, Roboto, Arial, sans-serif;
 	font-size: 12px;
 	line-height: 125%;
@@ -93,7 +99,7 @@ body {
 }
 
 #template_footer #credit a {
-	color: #b5dad8;
+	color: #b5dad8; /* Add KayMoz color */
 }
 
 #body_content {
@@ -105,7 +111,7 @@ body {
 }
 
 #body_content table td {
-	padding: 48px 48px 0;
+	padding: 48px 48px 32px;
 }
 
 #body_content table td td {
@@ -156,6 +162,7 @@ body {
 }
 
 .address {
+	padding: 12px;
 	color: <?php echo esc_attr( $text_lighter_20 ); ?>;
 	border: none;
 }
@@ -219,12 +226,13 @@ img {
 	display: inline-block;
 	font-size: 14px;
 	font-weight: bold;
-	max-width: 120px;
 	height: auto;
 	outline: none;
 	text-decoration: none;
 	text-transform: capitalize;
 	vertical-align: middle;
 	margin-<?php echo is_rtl() ? 'left' : 'right'; ?>: 20px;
+	max-width: 100%;
+	height: auto;
 }
 <?php
