@@ -101,7 +101,7 @@ if( !function_exists( 'kmc_min_shipping_fragment' ) ){
  * Adds a "Back to **category**" link on single product pages
  */
 function kmc_add_category_link_to_single_products(){
-	$terms = get_the_terms( $post->ID, 'product_cat' );
+	$terms = get_the_terms( get_the_ID(), 'product_cat' );
 	foreach ($terms as $term) {
 		if( $term->term_id != '15' || $term->term_id != '51' ){
 			$product_cat_id = $term->term_id;
@@ -346,40 +346,7 @@ function kmc_account_menu_items( $items ){
 	return $items;
 }
 
-/**
- * Temporarily enable <a  href = 'https://iconicwp.com/blog/hide-stock-products-woocommerce-catalog-pages/'  class = 'wpil_internal_link'  style = 'display: inline !important; width: auto !important'  target = '_blank'  data-wpil-post-to-id = '364'  >hide out of stock</a> items. 
- *
- * @param string $template_name
- * @param string $template_path
- * @param bool $located
- * @param array $args
- */
-function iconic_enable_hide_out_of_stock_items( $template_name, $template_path, $located, $args ) {
-	if( $template_name !== "single-product/related.php" ) {
-		return;
-	}
 
-	add_filter( 'pre_option_woocommerce_hide_out_of_stock_items', function( $option ) { return "yes"; }, 10, 1 );
-}
-
-/**
- * Temporarily disable hide out of stock items.
- *
- * @param string $template_name
- * @param string $template_path
- * @param bool $located
- * @param array $args
- */
-function iconic_disable_hide_out_of_stock_items( $template_name, $template_path, $located, $args ) {
-	if( $template_name !== "single-product/related.php" ) {
-		return;
-	}
-
-	add_filter( 'pre_option_woocommerce_hide_out_of_stock_items', function( $option ) { return "no"; }, 10, 1 );
-}
-
-add_action( 'woocommerce_before_template_part', 'kmc_enable_hide_out_of_stock_items', 10, 4 );
-add_action( 'woocommerce_after_template_part', 'kmc_disable_hide_out_of_stock_items', 10, 4 );
 /**
  * Temporarily enable hide out of stock items.
  *
@@ -412,5 +379,12 @@ function kmc_disable_hide_out_of_stock_items( $template_name, $template_path, $l
     add_filter( 'pre_option_woocommerce_hide_out_of_stock_items', function( $option ) { return "no"; }, 10, 1 );
 }
  
-add_action( 'woocommerce_before_template_part', 'iconic_enable_hide_out_of_stock_items', 10, 4 );
-add_action( 'woocommerce_after_template_part', 'iconic_disable_hide_out_of_stock_items', 10, 4 );
+add_action( 'woocommerce_before_template_part', 'kmc_enable_hide_out_of_stock_items', 10, 4 );
+add_action( 'woocommerce_after_template_part', 'kmc_disable_hide_out_of_stock_items', 10, 4 );
+
+/**
+ * Hide related products section if none found
+ */
+function kmc_hide_related_if_none() {
+	
+}

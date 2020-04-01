@@ -40,7 +40,13 @@
 	<header id="masthead" class="vid-beneath" role="banner">
 		<div class="content-width">
 			<div class="site-branding">
-					<div class="logo logo--white"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home" aria-label="Go to Kay Moz Ceramics homepage"><?php echo file_get_contents(get_template_directory_uri() . "/inc/kmc-logo.svg"); ?></a></div>
+					<div class="logo logo--white">
+						<a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home" aria-label="Go to Kay Moz Ceramics homepage">
+							<svg id="logo-svg">
+								<use xlink:href="#kmc-logo"></use>
+							</svg>
+						</a>
+					</div>
 					<!--<h2 class="site-description"><?php bloginfo( 'description' ); ?></h2>-->
 
 			</div><!-- .site-branding -->
@@ -93,7 +99,13 @@
 		<div class="content-width">
 			<div class="site-branding">
 				<div class="content-width">
-					<div class="logo logo--black logo-morph"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home" aria-label="Go to Kay Moz Ceramics homepage"><?php echo file_get_contents(get_template_directory_uri() . "/inc/KM-monogram.svg"); ?></a></div>
+					<div class="logo logo--black logo-morph">
+						<a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home" aria-label="Go to Kay Moz Ceramics homepage">
+							<svg id="logo-svg">
+								<use xlink:href="#kmc-monogram"></use>
+							</svg>
+						</a>
+					</div>
 					<!--<h2 class="site-description"><?php bloginfo( 'description' ); ?></h2>-->
 				</div><!-- .content-width -->
 			</div><!-- .site-branding -->
