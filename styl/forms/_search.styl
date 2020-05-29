@@ -1,0 +1,11 @@
+.search-form
+	display flex
+	flex-direction column
+	+widerThan($tabletSM)
+		flex-direction row
+		justify-content space-between
+	& > label
+		width 100%
+		margin 0 0 20px
+		+widerThan($tabletSM)
+			margin 0 20px 0

@@ -234,7 +234,9 @@ function add_attribs_to_scripts( $tag, $handle, $src ) {
 		return '<script async defer src="' . $src . '" crossorigin="anonymous" type="text/javascript"></script>' . "\n";
 	}
 	if ( in_array( $handle, $googlefonts ) ) {
-		return '<link rel="preload" id="google-fonts-css" href="' . $src . '" type="text/css" media="all">';
+		return '<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="preload" as="style" id="google-fonts-css" href="' . $src . '" type="text/css" media="all">
+<link rel="stylesheet" href="' . $src . '" media="print" onload="this.media="all" />';
 	}
 	return $tag;
 }

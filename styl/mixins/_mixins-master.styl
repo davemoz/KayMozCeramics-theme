@@ -1,0 +1,31 @@
+/* Media Query mixins */
+widerThan(var)
+	condition = 'screen and (min-width: %s)' % var
+	@media condition
+		{block}
+
+between(min, max)
+	condition = 'screen and (min-width: %s) and (max-width: %s)' % (min max)
+	@media condition
+		{block}
+
+/* PX to REM font-size mixin */
+font-size(value) {
+    font-size: value; /* add PX (or original value) as backup */
+
+    if (value is inherit) {
+        /* do nothing, "inherit" has no unit */
+    } else {
+        font-size: remify(value);
+    }
+}
+
+remify(value) { /* separate mixin, so it can be used elsewhere */
+    u = unit(value);
+
+    if (u is 'px') {
+        return unit(value/$font__font-size-base, 'rem');
+    } else {
+        return unit(value, u);
+    }
+}

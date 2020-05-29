@@ -1,0 +1,56 @@
+button,
+button[type="submit"],
+input[type="button"],
+input[type="reset"],
+input[type="submit"],
+.button.wc-backward,
+.button,
+a.button,
+.wp-block-button > a
+	display inline-block
+	border none
+	border-radius 3px
+	background $color__accent-dark
+	box-shadow none
+	color #fff
+	font-size 18px
+	line-height 1
+	padding 1.1em 2em
+	width 100%
+	text-align center
+	+widerThan($tabletSM)
+		font-size 15px
+		width unset
+	&:hover,
+	&:focus,
+	&:active
+		background $color__accent-darker
+		box-shadow none
+	&:visited
+		color #fff
+	&.accent-second
+		background $color__accent-second
+		&:hover
+			background $color__accent-second-dark
+	&.white
+		background #fff
+		color #545454
+		&:hover
+			opacity .7
+	&:disabled,
+	&.disabled
+		cursor not-allowed
+		background $color__accent
+		&:hover
+			background $color__accent-hover
+
+#secondary
+	button,
+	input[type="button"],
+	input[type="reset"],
+	input[type="submit"]
+		color #fff !important
+		background $color__accent-second-dark
+		&:hover
+			background $color__accent-second-darker
+			box-shadow none
