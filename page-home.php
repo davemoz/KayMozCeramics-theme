@@ -7,6 +7,10 @@
 
 get_header(); ?>
 
+<section class="newsletter-signup">
+	<?php echo do_shortcode( '[contact-form-7 id="215" title="Newsletter Signup"]', false ); ?>
+</section>
+
 <section id="home-bethany-section" class="section__content accent-bg">
 	<div class="content-width">
 

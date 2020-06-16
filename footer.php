@@ -18,7 +18,7 @@
 					<?php echo do_shortcode( '[instagram-feed]', false ); ?>
 				</section>
 			<?php } ?>
-			<?php if( !is_cart() && !is_checkout() && !is_account_page() && !is_page( array( 106, 5807 ) ) ){ ?>
+			<?php if( !is_home() && !is_cart() && !is_checkout() && !is_account_page() && !is_page( array( 106, 5807 ) ) ){ ?>
 				<section class="newsletter-signup">
 					<?php echo do_shortcode( '[contact-form-7 id="215" title="Newsletter Signup"]', false ); ?>
 				</section>
