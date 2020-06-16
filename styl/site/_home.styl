@@ -109,6 +109,39 @@
 						opacity .7
 		#content
 			padding 0
+			.newsletter-signup
+				margin-bottom 4em
+				.newsletter-signup-wrap
+					h2
+						text-align center
+						margin 0
+					& > p
+						display flex
+						flex-direction column
+						align-items center
+						margin 0 auto
+						width 100%
+						+widerThan($mobileLG)
+							flex-direction row
+							width 60%
+						.wpcf7-form-control-wrap
+							display flex
+							width 100%
+							margin-right 0
+							margin-bottom 10px
+							+widerThan($mobileLG)
+								margin-bottom 0
+						.wpcf7-submit
+							width 100%
+							background $color__accent-dark
+							margin-left 0
+							&:hover
+								background $color__accent-darker
+							+widerThan($mobileLG)
+								width 40%
+								margin-left 10px
+						.ajax-loader
+							margin 0 0 0 10px
 			.section__content
 				position relative
 				display flex
