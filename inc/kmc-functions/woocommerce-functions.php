@@ -415,7 +415,7 @@ if ( ! function_exists( 'kmc_woocommerce_output_product_categories' ) ) {
 		echo $args['before']; // WPCS: XSS ok.
 
 		foreach ( $product_categories as $category ) {
-			if( get_category( $category )->category_count > 1 ) {
+			if( get_category( $category )->category_count >= 1 ) {
 				wc_get_template(
 					'content-product_cat.php',
 					array(
