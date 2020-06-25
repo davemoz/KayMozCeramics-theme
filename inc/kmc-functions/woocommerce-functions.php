@@ -337,6 +337,101 @@ function kmc_misfits_shop_discount_price( $price ) {
 */
 
 /**
+ * Add category display option to hide sub-categories when only one product is in that sub-category
+ * 
+ * @Overrides - woocommerce_output_product_subcategories() in wc-template-functions.php
+ */
+remove_filter( 'woocommerce_product_loop_start', 'woocommerce_maybe_show_product_subcategories');
+add_filter( 'woocommerce_product_loop_start', 'kmc_woocommerce_maybe_show_product_subcategories' );
+if ( ! function_exists( 'kmc_woocommerce_maybe_show_product_subcategories' ) ) {
+
+	/**
+	 * Maybe display categories before, or instead of, a product loop.
+	 *
+	 * @since 3.3.0
+	 * @param string $loop_html HTML.
+	 * @return string
+	 */
+	function kmc_woocommerce_maybe_show_product_subcategories( $loop_html = '' ) {
+		if ( wc_get_loop_prop( 'is_shortcode' ) && ! WC_Template_Loader::in_content_filter() ) {
+			return $loop_html;
+		}
+
+		$display_type = woocommerce_get_loop_display_mode();
+
+		// If displaying categories, append to the loop.
+		if ( 'subcategories' === $display_type || 'both' === $display_type ) {
+			ob_start();
+			kmc_woocommerce_output_product_categories(
+				array(
+					'parent_id' => is_product_category() ? get_queried_object_id() : 0,
+				)
+			);
+			$loop_html .= ob_get_clean();
+
+			if ( 'subcategories' === $display_type ) {
+				wc_set_loop_prop( 'total', 0 );
+
+				// This removes pagination and products from display for themes not using wc_get_loop_prop in their product loops.  @todo Remove in future major version.
+				global $wp_query;
+
+				if ( $wp_query->is_main_query() ) {
+					$wp_query->post_count    = 0;
+					$wp_query->max_num_pages = 0;
+				}
+			}
+		}
+
+		return $loop_html;
+	}
+}
+if ( ! function_exists( 'kmc_woocommerce_output_product_categories' ) ) {
+	/**
+	 * Display product sub categories as thumbnails.
+	 *
+	 * This is a replacement for woocommerce_product_subcategories which also does some logic
+	 * based on the loop. This function however just outputs when called.
+	 *
+	 * @since 3.3.1
+	 * @param array $args Arguments.
+	 * @return boolean
+	 */
+	function kmc_woocommerce_output_product_categories( $args = array() ) {
+		$args = wp_parse_args(
+			$args,
+			array(
+				'before'    => apply_filters( 'woocommerce_before_output_product_categories', '' ),
+				'after'     => apply_filters( 'woocommerce_after_output_product_categories', '' ),
+				'parent_id' => 0,
+			)
+		);
+
+		$product_categories = woocommerce_get_product_subcategories( $args['parent_id'] );
+
+		if ( ! $product_categories ) {
+			return false;
+		}
+
+		echo $args['before']; // WPCS: XSS ok.
+
+		foreach ( $product_categories as $category ) {
+			if( get_category( $category )->category_count > 1 ) {
+				wc_get_template(
+					'content-product_cat.php',
+					array(
+						'category' => $category,
+					)
+				);
+			}
+		}
+
+		echo $args['after']; // WPCS: XSS ok.
+
+		return true;
+	}
+}
+
+/**
  * Remove Downloads & Pre-Orders from Account nav
  */
 add_filter( 'woocommerce_account_menu_items', 'kmc_account_menu_items' );
