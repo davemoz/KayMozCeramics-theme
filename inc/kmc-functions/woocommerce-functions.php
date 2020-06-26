@@ -341,7 +341,6 @@ function kmc_misfits_shop_discount_price( $price ) {
  * 
  * @Overrides - woocommerce_output_product_subcategories() in wc-template-functions.php
  */
-remove_filter( 'woocommerce_product_loop_start', 'woocommerce_maybe_show_product_subcategories');
 add_filter( 'woocommerce_product_loop_start', 'kmc_woocommerce_maybe_show_product_subcategories' );
 if ( ! function_exists( 'kmc_woocommerce_maybe_show_product_subcategories' ) ) {
 
@@ -435,7 +434,7 @@ if ( ! function_exists( 'kmc_woocommerce_output_product_categories' ) ) {
 				wc_get_template(
 					'content-product.php',
 					array(
-						'category' => $category,
+						'product_cat' => $category,
 					)
 				);
 			}
