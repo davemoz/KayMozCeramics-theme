@@ -415,6 +415,7 @@ if ( ! function_exists( 'kmc_woocommerce_output_product_categories' ) ) {
 		echo $args['before']; // WPCS: XSS ok.
 
 		foreach ( $product_categories as $category ) {
+			/*
 			$cat_name = get_category( $category )->name;
 			$cat_parent = get_category( $category )->parent;
 			$cat_count = get_category( $category )->count;
@@ -438,14 +439,14 @@ if ( ! function_exists( 'kmc_woocommerce_output_product_categories' ) ) {
 			elseif( $cat_parent != 0 && $cat_count <= 1 ) {
 				echo "Parent cat == " . $cat_parent . ". Prod count <= " . $cat_count . ".";
 			}
-			else {
+			else {*/
 				wc_get_template(
 					'content-product_cat.php',
 					array(
 						'category' => $category,
 					)
 				);
-			}
+			// }
 		}
 
 		echo $args['after']; // WPCS: XSS ok.
