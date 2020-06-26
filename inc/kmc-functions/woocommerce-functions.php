@@ -385,6 +385,7 @@ if ( ! function_exists( 'kmc_woocommerce_maybe_show_product_subcategories' ) ) {
 		return $loop_html;
 	}
 }
+
 if ( ! function_exists( 'kmc_woocommerce_output_product_categories' ) ) {
 	/**
 	 * Display product sub categories as thumbnails.
@@ -415,13 +416,22 @@ if ( ! function_exists( 'kmc_woocommerce_output_product_categories' ) ) {
 		echo $args['before']; // WPCS: XSS ok.
 
 		foreach ( $product_categories as $category ) {
-			if( get_category( $category )->category_count >= 1 ) {
+			if( get_category( $category )->category_count == 1 ) {
+				echo "Has 1 product.";
+				/*
 				wc_get_template(
 					'content-product_cat.php',
 					array(
 						'category' => $category,
 					)
 				);
+				*/
+			}
+			elseif( get_category( $category )->category_count == 0 ) {
+				echo "Has 0 products.";
+			}
+			elseif( get_category( $category )->category_count > 1 ) {
+				echo "Has multiple products.";
 			}
 		}
 
