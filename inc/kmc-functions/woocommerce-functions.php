@@ -418,7 +418,7 @@ if ( ! function_exists( 'kmc_woocommerce_output_product_categories' ) ) {
 			$cat_name = get_category( $category )->name;
 			$cat_parent = get_category( $category )->parent;
 			$cat_count = get_category( $category )->count;
-			if( $cat_parent == 0 && $cat_count > 1 ) {
+			if( $cat_parent != 0 && $cat_count > 1 ) {
 				wc_get_template(
 					'content-product_cat.php',
 					array(
@@ -426,7 +426,7 @@ if ( ! function_exists( 'kmc_woocommerce_output_product_categories' ) ) {
 					)
 				);
 			}
-			elseif( $cat_parent == 0 && $cat_count <= 1 ) {
+			elseif( $cat_parent != 0 && $cat_count <= 1 ) {
 				if ( woocommerce_product_loop() ) {
 
 					/**
@@ -470,7 +470,7 @@ if ( ! function_exists( 'kmc_woocommerce_output_product_categories' ) ) {
 					do_action( 'woocommerce_no_products_found' );
 				}
 			}
-			else {
+			elseif( $cat_parent == 0 ) {
 				var_dump($cat_parent);
 				echo "Category parent is: " . $cat_parent . ".";
 				wc_get_template(
