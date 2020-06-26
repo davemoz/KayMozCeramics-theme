@@ -471,6 +471,7 @@ if ( ! function_exists( 'kmc_woocommerce_output_product_categories' ) ) {
 				}
 			}
 			else {
+				echo "Category parent is: " . $cat_parent . ".";
 				wc_get_template(
 					'content-product_cat.php',
 					array(
