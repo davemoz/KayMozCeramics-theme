@@ -416,7 +416,9 @@ if ( ! function_exists( 'kmc_woocommerce_output_product_categories' ) ) {
 		echo $args['before']; // WPCS: XSS ok.
 
 		foreach ( $product_categories as $category ) {
-			if( get_category( $category )->category_count == 1 ) {
+			$cat_parent = get_category( $category )->category_parent;
+			$cat_count = get_category( $category )->category_count;
+			if( $cat_parent != null && $cat_count == 1 ) {
 				echo "Has 1 product.";
 				wc_get_template(
 					'content-product_cat.php',
@@ -425,10 +427,10 @@ if ( ! function_exists( 'kmc_woocommerce_output_product_categories' ) ) {
 					)
 				);
 			}
-			elseif( get_category( $category )->category_count == 0 ) {
+			elseif( $cat_parent != null && $cat_count == 0 ) {
 				echo "Has 0 products.";
 			}
-			elseif( get_category( $category )->category_count > 1 ) {
+			elseif( $cat_parent != null && $cat_count > 1 ) {
 				echo "Has multiple products.";
 				wc_get_template(
 					'content-product_cat.php',
