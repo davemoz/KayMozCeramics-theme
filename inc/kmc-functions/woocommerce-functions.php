@@ -416,11 +416,12 @@ if ( ! function_exists( 'kmc_woocommerce_output_product_categories' ) ) {
 		echo $args['before']; // WPCS: XSS ok.
 
 		foreach ( $product_categories as $category ) {
+			$cat_ID = get_category( $category )->ID;
 			$cat_parent = get_category( $category )->category_parent;
 			$cat_count = get_category( $category )->category_count;
 			if( $cat_parent != null && $cat_count > 1 ) {
-				echo "Has > 1 product.";
-				echo "Parent catgegory: ". $cat_parent .".";
+				echo "Category ". $cat_ID ." has > 1 product.";
+				echo "Parent category: ". $cat_parent .".";
 				wc_get_template(
 					'content-product_cat.php',
 					array(
@@ -429,9 +430,14 @@ if ( ! function_exists( 'kmc_woocommerce_output_product_categories' ) ) {
 				);
 			}
 			elseif( $cat_parent != null && $cat_count <= 1 ) {
-				echo "Has <= 1 products.";
-				echo "Parent catgegory: ". $cat_parent .".";
-				echo "Show product template.";
+				echo "Category ". $cat_ID ." has <= 1 products.";
+				echo "Parent category: ". $cat_parent .".";
+				wc_get_template(
+					'content-product.php',
+					array(
+						'category' => $category,
+					)
+				);
 			}
 			else {
 				wc_get_template(
