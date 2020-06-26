@@ -438,6 +438,14 @@ if ( ! function_exists( 'kmc_woocommerce_output_product_categories' ) ) {
 			elseif( $cat_parent != 0 && $cat_count <= 1 ) {
 				echo "Parent cat == " . $cat_parent . ". Prod count <= " . $cat_count . ".";
 			}
+			else {
+				wc_get_template(
+					'content-product_cat.php',
+					array(
+						'category' => $category,
+					)
+				);
+			}
 		}
 
 		echo $args['after']; // WPCS: XSS ok.
