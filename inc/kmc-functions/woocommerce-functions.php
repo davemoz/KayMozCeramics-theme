@@ -427,7 +427,7 @@ if ( ! function_exists( 'kmc_woocommerce_output_product_categories' ) ) {
 				);
 			}
 			elseif( $cat_parent != 0 && $cat_count <= 1 ) {
-				echo "Parent cat == true. Prod count <= 1.";
+				echo "Parent cat == " . $cat_parent . ". Prod count <= " . $cat_count . ".";
 			}
 			elseif( $cat_parent == 0 ) {
 				echo "Category parent is: " . $cat_parent . ".";
