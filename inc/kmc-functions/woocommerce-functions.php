@@ -418,20 +418,24 @@ if ( ! function_exists( 'kmc_woocommerce_output_product_categories' ) ) {
 		foreach ( $product_categories as $category ) {
 			if( get_category( $category )->category_count == 1 ) {
 				echo "Has 1 product.";
-				/*
 				wc_get_template(
 					'content-product_cat.php',
 					array(
 						'category' => $category,
 					)
 				);
-				*/
 			}
 			elseif( get_category( $category )->category_count == 0 ) {
 				echo "Has 0 products.";
 			}
 			elseif( get_category( $category )->category_count > 1 ) {
 				echo "Has multiple products.";
+				wc_get_template(
+					'content-product_cat.php',
+					array(
+						'category' => $category,
+					)
+				);
 			}
 		}
 
