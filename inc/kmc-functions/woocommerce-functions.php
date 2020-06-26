@@ -418,7 +418,16 @@ if ( ! function_exists( 'kmc_woocommerce_output_product_categories' ) ) {
 			$cat_name = get_category( $category )->name;
 			$cat_parent = get_category( $category )->parent;
 			$cat_count = get_category( $category )->count;
-			if( $cat_parent != 0 && $cat_count > 1 ) {
+			if( $cat_parent == 0 ) {
+				echo "Category parent is: " . $cat_parent . ".";
+				wc_get_template(
+					'content-product_cat.php',
+					array(
+						'category' => $category,
+					)
+				);
+			}
+			elseif( $cat_parent != 0 && $cat_count > 1 ) {
 				wc_get_template(
 					'content-product_cat.php',
 					array(
@@ -428,15 +437,6 @@ if ( ! function_exists( 'kmc_woocommerce_output_product_categories' ) ) {
 			}
 			elseif( $cat_parent != 0 && $cat_count <= 1 ) {
 				echo "Parent cat == " . $cat_parent . ". Prod count <= " . $cat_count . ".";
-			}
-			elseif( $cat_parent == 0 ) {
-				echo "Category parent is: " . $cat_parent . ".";
-				wc_get_template(
-					'content-product_cat.php',
-					array(
-						'category' => $category,
-					)
-				);
 			}
 		}
 
