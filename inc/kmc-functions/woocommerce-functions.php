@@ -420,6 +420,7 @@ if ( ! function_exists( 'kmc_woocommerce_output_product_categories' ) ) {
 			$cat_count = get_category( $category )->category_count;
 			if( $cat_parent != null && $cat_count == 1 ) {
 				echo "Has 1 product.";
+				echo "Parent catgegory: ". $cat_parent .".";
 				wc_get_template(
 					'content-product_cat.php',
 					array(
@@ -429,9 +430,11 @@ if ( ! function_exists( 'kmc_woocommerce_output_product_categories' ) ) {
 			}
 			elseif( $cat_parent != null && $cat_count == 0 ) {
 				echo "Has 0 products.";
+				echo "Parent catgegory: ". $cat_parent .".";
 			}
 			elseif( $cat_parent != null && $cat_count > 1 ) {
 				echo "Has multiple products.";
+				echo "Parent catgegory: ". $cat_parent .".";
 				wc_get_template(
 					'content-product_cat.php',
 					array(
