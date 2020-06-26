@@ -431,22 +431,13 @@ if ( ! function_exists( 'kmc_woocommerce_output_product_categories' ) ) {
 			elseif( $cat_parent != null && $cat_count <= 1 ) {
 				echo "Category ". $cat_name ." has <= 1 products.";
 				echo "Parent category: ". $cat_parent .".";
-				woocommerce_product_loop_start();
-
-				if ( wc_get_loop_prop( 'total' ) ) {
-					while ( have_posts() ) {
-						the_post();
-
-						/**
-						 * Hook: woocommerce_shop_loop.
-						 */
-						do_action( 'woocommerce_shop_loop' );
-
-						wc_get_template_part( 'content', 'product' );
-					}
-				}
-
-				woocommerce_product_loop_end();
+				global $product;
+				wc_get_template(
+					'content-product.php',
+					array(
+						'product_cat' => $category,
+					)
+				);
 			}
 			else {
 				wc_get_template(
