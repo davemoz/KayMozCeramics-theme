@@ -30,7 +30,7 @@
 		if ( parentMenuItem.classList.contains('menu-item-has-children') ) {
 			let parentItemLink = parentMenuItem.querySelector('a');
 			parentItemLink.addEventListener('click', function(event) {
-				event.preventDefault();
+				// event.preventDefault();
 				let subMenuWrap = parentMenuItem.querySelector('.sub-menu');
 				subMenuWrap.classList.toggle('active-submenu');
 			});
