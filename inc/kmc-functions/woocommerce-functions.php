@@ -100,7 +100,10 @@ if( !function_exists( 'kmc_min_shipping_fragment' ) ){
 /**
  * Adds a "Back to **category**" link on single product pages
  */
-function kmc_add_category_link_to_single_products(){
+function kmc_add_backto_link_to_single_products(){
+	/**
+	 * Old function that created link back to product's category
+	 * /
 	$terms = get_the_terms( get_the_ID(), 'product_cat' );
 	foreach ($terms as $term) {
 		if( $term->term_id != '15' || $term->term_id != '51' ){
@@ -111,8 +114,21 @@ function kmc_add_category_link_to_single_products(){
 			echo '</div>';
 		}
 	}
+	*/
+	$refererURL = wp_get_referer();
+	$refererID = url_to_postid( $refererURL );
+	if( !$refererID == 0 ) {
+		echo '<div id="product-backlink">';
+		echo '<a href="' . $refererURL . '">← Back to '. get_the_title( $refererID ) .'</a>';
+		echo '</div>';
+	}
+	else {
+		echo '<div id="product-backlink">';
+		echo '<a href="/shop/">← Back to Shop</a>';
+		echo '</div>';
+	}
 }
-add_action( 'woocommerce_before_single_product', 'kmc_add_category_link_to_single_products', 20 );
+add_action( 'woocommerce_before_single_product', 'kmc_add_backto_link_to_single_products', 20 );
 
 /**
  * Update cart contents count with Misfits discount
@@ -202,7 +218,7 @@ function kmc_free_shipping_cart_notice() {
 }
 
 /**
- * Adds custom message (above) to cart page
+ * Adds custom message(above function) to cart page
  */
 add_action('woocommerce_before_cart', 'kmc_messages', 20);
 // add_action('woocommerce_before_checkout_form', 'kmc_messages', 5); // Add the message before the checkout form too?
