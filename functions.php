@@ -325,7 +325,7 @@ add_action( 'wp_body_open', 'kmc_add_free_shipping_notice' );
  * Include WooCommerce functions
  */
 if( class_exists( 'woocommerce' ) ) {
-	require_once __DIR__ . '/inc/kmc-functions/woocommerce-functions.php';
+	require_once __DIR__ . '/inc/woocommerce.php';
 }
 
 /**************************************************************************
