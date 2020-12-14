@@ -9,14 +9,15 @@
 	padding 0
 	list-style none
 	list-style-type none
-	grid-column 1 / -1
-	display grid
-	grid-template-columns 1fr 1fr 1fr
-	grid-gap 15px
-	+widerThan($tabletSM)
-		grid-template-columns 1fr 1fr 1fr 1fr
-		column-gap 30px
-		row-gap 60px
+	display flex
+	flex-wrap wrap
+
+	&.columns-3
+		.product
+			width 30%
+	&.columns-4
+		.product
+			width 22%
 	.product-category
 		& > a
 			border none
