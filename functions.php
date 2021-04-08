@@ -7,68 +7,67 @@
  */
 
 if (!function_exists('kmc_setup')) :
-/**
- * Sets up theme defaults and registers support for various WordPress features.
- *
- * Note that this function is hooked into the after_setup_theme hook, which
- * runs before the init hook. The init hook is too late for some features, such
- * as indicating support for post thumbnails.
- */
-function kmc_setup()
-{
-	/*
+	/**
+	 * Sets up theme defaults and registers support for various WordPress features.
+	 *
+	 * Note that this function is hooked into the after_setup_theme hook, which
+	 * runs before the init hook. The init hook is too late for some features, such
+	 * as indicating support for post thumbnails.
+	 */
+	function kmc_setup()
+	{
+		/*
 	 * Make theme available for translation.
 	 * Translations can be filed in the /languages/ directory.
 	 * If you're building a theme based on kmc, use a find and replace
 	 * to change 'kmc' to the name of your theme in all the template files
 	 */
-	load_theme_textdomain('kmc', get_template_directory() . '/languages');
+		load_theme_textdomain('kmc', get_template_directory() . '/languages');
 
-	// Add default posts and comments RSS feed links to head.
-	add_theme_support('automatic-feed-links');
+		// Add default posts and comments RSS feed links to head.
+		add_theme_support('automatic-feed-links');
 
-	/*
+		/*
 	 * Let WordPress manage the document title.
 	 * By adding theme support, we declare that this theme does not use a
 	 * hard-coded <title> tag in the document head, and expect WordPress to
 	 * provide it for us.
 	 */
-	add_theme_support('title-tag');
+		add_theme_support('title-tag');
 
-	/*
+		/*
 	 * Enable support for Post Thumbnails on posts and pages.
 	 *
 	 * @link http://codex.wordpress.org/Function_Reference/add_theme_support#Post_Thumbnails
 	 */
-	add_theme_support('post-thumbnails');
+		add_theme_support('post-thumbnails');
 
-	// Register Nav Menus
-	register_nav_menus(array(
-		'primary' => esc_html__('Primary Menu', 'kmc'),
-		'social' => esc_html__('Social Menu', 'kmc'),
-		'cart' => esc_html__('Cart Menu', 'kmc'),
-	));
+		// Register Nav Menus
+		register_nav_menus(array(
+			'primary' => esc_html__('Primary Menu', 'kmc'),
+			'social' => esc_html__('Social Menu', 'kmc'),
+			'cart' => esc_html__('Cart Menu', 'kmc'),
+		));
 
-	/*
+		/*
 	 * Switch default core markup for search form, comment form, and comments
 	 * to output valid HTML5.
 	 */
-	add_theme_support('html5', array(
-		'search-form',
-		'comment-form',
-		'comment-list',
-		'gallery',
-		'caption',
-	));
+		add_theme_support('html5', array(
+			'search-form',
+			'comment-form',
+			'comment-list',
+			'gallery',
+			'caption',
+		));
 
-	/*
+		/*
 	 * Add Editor Style for adequate styling in text editor.
 	 *
 	 * @link http://codex.wordpress.org/Function_Reference/add_editor_style
 	 */
-	add_editor_style('editor-style.css');
-
-}
+		add_editor_style('editor-style.css');
+	}
 endif; // kmc_setup
 add_action('after_setup_theme', 'kmc_setup');
 
@@ -76,7 +75,8 @@ add_action('after_setup_theme', 'kmc_setup');
  * Add WooCommerce support.
  */
 add_action('after_setup_theme', 'KayMozCeramics_add_woocommerce_support');
-function KayMozCeramics_add_woocommerce_support() {
+function KayMozCeramics_add_woocommerce_support()
+{
 	add_theme_support('woocommerce', array(
 		'thumbnail_image_width' => 400,
 		'single_image_width'    => 1200,
@@ -125,59 +125,58 @@ add_action('widgets_init', 'kmc_widgets_init');
 /*
  * Add preconnect to header for Google Fonts, unpkg, FontAwesome, and s.w.org
  */
-function kmc_add_dns_preconnect_to_head(){
+function kmc_add_dns_preconnect_to_head()
+{
 	echo '<link rel="preconnect" href="https://use.fontawesome.com/" crossorigin>';
 	echo '<link rel="preconnect" href="https://unpkg.com/" crossorigin>';
 	echo '<link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin>';
 	echo '<link rel="preconnect" href="https://s.w.org/" crossorigin>';
 }
-add_action( 'wp_head', 'kmc_add_dns_preconnect_to_head', 2 );
+add_action('wp_head', 'kmc_add_dns_preconnect_to_head', 2);
 
 /**
  * Enqueue scripts and styles.
  */
 function kmc_scripts()
 {
-	wp_enqueue_style('kmc-style', get_stylesheet_uri(), array(), filemtime( get_stylesheet_directory() . '/style.css' ) );
+	wp_enqueue_style('kmc-style', get_stylesheet_uri(), array(), filemtime(get_stylesheet_directory() . '/style.css'));
 
-	wp_enqueue_style('google-fonts', '//fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">', array(), null );
+	wp_enqueue_style('google-fonts', '//fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">', array(), null);
 
 	// wp_enqueue_style('video-js-css', '//vjs.zencdn.net/7.5.4/video-js.min.css', array(), '7.5.4' );
-	
-	wp_enqueue_style('aos-css', '//unpkg.com/aos@next/dist/aos.css', array(), null );
-	
-	wp_enqueue_style('paymentfont-css', get_template_directory_uri() . '/inc/paymentfont/css/paymentfont.min.css', array(), '1.2.5' );
 
-	wp_enqueue_script('font-awesome', '//use.fontawesome.com/releases/v5.7.2/js/all.js', array(), null );
+	wp_enqueue_style('aos-css', '//unpkg.com/aos@next/dist/aos.css', array(), null);
+
+	wp_enqueue_style('paymentfont-css', get_template_directory_uri() . '/inc/paymentfont/css/paymentfont.min.css', array(), '1.2.5');
+
+	wp_enqueue_script('font-awesome', '//use.fontawesome.com/releases/v5.7.2/js/all.js', array(), null);
 
 	// wp_enqueue_script('video-js-ie', '//vjs.zencdn.net/ie8/1.1.2/videojs-ie8.min.js', array(), '1.1.2', true );
 
 	// wp_enqueue_script('video-js', '//vjs.zencdn.net/7.5.4/video.min.js', array(), '7.5.4', true );
-	
-	wp_enqueue_script('aos-js', '//unpkg.com/aos@next/dist/aos.js', array(), null, true );
 
-	wp_enqueue_script('kmc-navigation', get_template_directory_uri() . '/js/navigation-min.js', array(), filemtime( get_template_directory() . '/js/navigation-min.js' ), true );
+	wp_enqueue_script('aos-js', '//unpkg.com/aos@next/dist/aos.js', array(), null, true);
 
-	wp_enqueue_script('kmc-site-scripts', get_template_directory_uri() . '/js/site-scripts-min.js', array('jquery'), filemtime( get_template_directory() . '/js/site-scripts-min.js' ), true );
-	
-	if( is_page() ){ //Check if we are viewing a page
+	wp_enqueue_script('kmc-navigation', get_template_directory_uri() . '/js/navigation-min.js', array(), filemtime(get_template_directory() . '/js/navigation-min.js'), true);
+
+	wp_enqueue_script('kmc-site-scripts', get_template_directory_uri() . '/js/site-scripts-min.js', array('jquery'), filemtime(get_template_directory() . '/js/site-scripts-min.js'), true);
+
+	if (is_page()) { //Check if we are viewing a page
 		global $wp_query;
 		//Check which template is assigned to current page we are looking at
-		$template_name = get_post_meta( $wp_query->post->ID, '_wp_page_template', true );
-		if($template_name == 'page-home.php'){
-			
-			wp_enqueue_script('kmc-homepage-scripts', get_template_directory_uri() . '/js/homepage-scripts-min.js', array('jquery'), filemtime( get_template_directory() . '/js/homepage-scripts-min.js' ), true );
-		
+		$template_name = get_post_meta($wp_query->post->ID, '_wp_page_template', true);
+		if ($template_name == 'page-home.php') {
+
+			wp_enqueue_script('kmc-homepage-scripts', get_template_directory_uri() . '/js/homepage-scripts-min.js', array('jquery'), filemtime(get_template_directory() . '/js/homepage-scripts-min.js'), true);
 		}
 	}
-	
-	if( is_checkout() ){
-		
-		wp_enqueue_script('kmc-checkout-scripts', get_template_directory_uri() . '/js/checkout-scripts-min.js', array('jquery'), filemtime( get_template_directory() . '/js/checkout-scripts-min.js' ), true );
-		
+
+	if (is_checkout()) {
+
+		wp_enqueue_script('kmc-checkout-scripts', get_template_directory_uri() . '/js/checkout-scripts-min.js', array('jquery'), filemtime(get_template_directory() . '/js/checkout-scripts-min.js'), true);
 	}
 
-	wp_enqueue_script('kmc-skip-link-focus-fix', get_template_directory_uri() . '/js/skip-link-focus-fix.js', array(), filemtime( get_template_directory() . '/js/skip-link-focus-fix.js' ), true);
+	wp_enqueue_script('kmc-skip-link-focus-fix', get_template_directory_uri() . '/js/skip-link-focus-fix.js', array(), filemtime(get_template_directory() . '/js/skip-link-focus-fix.js'), true);
 
 	if (is_singular() && comments_open() && get_option('thread_comments')) {
 		wp_enqueue_script('comment-reply');
@@ -194,16 +193,17 @@ add_action('wp_enqueue_scripts', 'kmc_scripts');
  *
  * @return   Filtered HTML script tag.
  */
-add_filter( 'script_loader_tag', 'add_attribs_to_scripts', 10, 3 );
+add_filter('script_loader_tag', 'add_attribs_to_scripts', 10, 3);
 
-function add_attribs_to_scripts( $tag, $handle, $src ) {
+function add_attribs_to_scripts($tag, $handle, $src)
+{
 
 	// The handles of the enqueued scripts we want to defer
 	$async_scripts = array(
 		'kmc-scripts',
 	);
 
-	$defer_scripts = array( 
+	$defer_scripts = array(
 		'kmc-scripts',
 		'google-fonts',
 		'aos-css',
@@ -216,24 +216,24 @@ function add_attribs_to_scripts( $tag, $handle, $src ) {
 	$jquery = array(
 		'jquery'
 	);
-	
+
 	$googlefonts = array(
 		'google-fonts'
 	);
 
-    if ( in_array( $handle, $defer_scripts ) ) {
+	if (in_array($handle, $defer_scripts)) {
 		return '<script defer src="' . $src . '" type="text/javascript"></script>' . "\n";
 	}
-	if ( in_array( $handle, $async_scripts ) ) {
+	if (in_array($handle, $async_scripts)) {
 		return '<script async src="' . $src . '" async="async" type="text/javascript"></script>' . "\n";
 	}
-	if ( in_array( $handle, $fontawesome ) ) {
+	if (in_array($handle, $fontawesome)) {
 		return '<script data-search-pseudo-elements defer src="' . $src . '" integrity="sha384-0pzryjIRos8mFBWMzSSZApWtPl/5++eIfzYmTgBBmXYdhvxPc+XcFEk+zJwDgWbP" crossorigin="anonymous"></script>' . "\n";
 	}
-	if ( in_array( $handle, $jquery ) ) {
+	if (in_array($handle, $jquery)) {
 		return '<script async defer src="' . $src . '" crossorigin="anonymous" type="text/javascript"></script>' . "\n";
 	}
-	if ( in_array( $handle, $googlefonts ) ) {
+	if (in_array($handle, $googlefonts)) {
 		return '<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link rel="preload" as="style" id="google-fonts-css" href="' . $src . '" type="text/css" media="all">
 <link rel="stylesheet" href="' . $src . '" media="print" onload="this.media="all" />';
@@ -287,8 +287,9 @@ require get_template_directory() . '/inc/jetpack.php';
  * ------------------------------------------------------------------------
  */
 add_filter('body_class', 'kmc_add_no_sidebar_class_to_body');
-function kmc_add_no_sidebar_class_to_body( $classes ) {
-	if ( is_page_template( 'page-home.php' ) || is_shop() || is_product() ) {
+function kmc_add_no_sidebar_class_to_body($classes)
+{
+	if (is_page_template('page-home.php') || is_shop() || is_product()) {
 		$noSidebarClass = 'no-sidebar';
 		$classes[] = $noSidebarClass;
 	}
@@ -300,21 +301,23 @@ function kmc_add_no_sidebar_class_to_body( $classes ) {
  *  Modifies JetPack lazy-load placeholder image to a custom gif
  * ------------------------------------------------------------------------
  */
-function kmc_jetpack_lazyload_placeholder_image( $image ) {
+function kmc_jetpack_lazyload_placeholder_image($image)
+{
 	$template_directory = get_template_directory_uri();
 	return $template_directory . '/inc/imgs/Rolling-1s-200px.gif';
 }
-add_filter( 'lazyload_images_placeholder_image', 'kmc_jetpack_lazyload_placeholder_image' );
+add_filter('lazyload_images_placeholder_image', 'kmc_jetpack_lazyload_placeholder_image');
 
 /**
  * ------------------------------------------------------------------------
  *  Adds site-wide notice to top of page (after body tag)
  * ------------------------------------------------------------------------
  */
-function kmc_add_free_shipping_notice(){ ?>
+function kmc_add_free_shipping_notice()
+{ ?>
 	<div id="site-wide-notice">Free shipping on orders over $50!<a class="btn" href="/shop/">Go shop!</a></div>
 <?php }
-add_action( 'wp_body_open', 'kmc_add_free_shipping_notice' );
+add_action('wp_body_open', 'kmc_add_free_shipping_notice');
 
 /**************************************************************************
  *
@@ -324,7 +327,7 @@ add_action( 'wp_body_open', 'kmc_add_free_shipping_notice' );
 /**
  * Include WooCommerce functions
  */
-if( class_exists( 'woocommerce' ) ) {
+if (class_exists('woocommerce')) {
 	require_once __DIR__ . '/inc/woocommerce.php';
 }
 
@@ -356,7 +359,8 @@ if( class_exists( 'woocommerce' ) ) {
  *
  **************************************************************************/
 
-function kmc_svg_sprites() {
+function kmc_svg_sprites()
+{
 	echo '<div id="svg-icons" class="visually-hidden">
 			<svg xmlns="http://www.w3.org/2000/svg">
 				
@@ -396,4 +400,4 @@ function kmc_svg_sprites() {
 			</svg>
 		</div>';
 }
-add_action( 'wp_head', 'kmc_svg_sprites' );
+add_action('wp_head', 'kmc_svg_sprites');
