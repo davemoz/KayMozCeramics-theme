@@ -170,7 +170,8 @@
 								font-weight normal
 			form
 				display flex
-				flex-direction row
+				flex-direction column
+				align-items center
 				.quantity
 					display flex
 					margin-right 10px
@@ -219,11 +220,6 @@
 								font-weight 700
 					.woocommerce-variation-add-to-cart
 						display flex
-			.wcppec-checkout-buttons
-				&::before
-					content '- or -'
-					display block
-					margin 0 0 1em
 			.sharedaddy
 				.sd-content
 					& > ul
@@ -255,7 +251,7 @@
 				padding 0
 				list-style none
 				list-style-type none
-				display flex
+				display none
 				justify-content center
 				align-items center
 			.woocommerce-Tabs-panel
