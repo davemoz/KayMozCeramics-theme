@@ -128,7 +128,6 @@ add_action('widgets_init', 'kmc_widgets_init');
 function kmc_add_dns_preconnect_to_head()
 {
   echo '<link rel="preconnect" href="https://use.fontawesome.com/" crossorigin>';
-  echo '<link rel="preconnect" href="https://unpkg.com/" crossorigin>';
   echo '<link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin>';
   echo '<link rel="preconnect" href="https://s.w.org/" crossorigin>';
 }
@@ -139,27 +138,17 @@ add_action('wp_head', 'kmc_add_dns_preconnect_to_head', 2);
  */
 function kmc_scripts()
 {
-  wp_enqueue_style('kmc-style', get_stylesheet_uri(), array(), filemtime(get_stylesheet_directory() . '/style.css'));
+  wp_enqueue_style('kmc-style', get_template_directory_uri() . '/public/style.css', array(), filemtime(get_stylesheet_directory() . '/public/style.css'));
 
   wp_enqueue_style('google-fonts', '//fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">', array(), null);
 
-  // wp_enqueue_style('video-js-css', '//vjs.zencdn.net/7.5.4/video-js.min.css', array(), '7.5.4' );
-
-  wp_enqueue_style('aos-css', '//unpkg.com/aos@next/dist/aos.css', array(), null);
-
-  wp_enqueue_style('paymentfont-css', get_template_directory_uri() . '/inc/paymentfont/css/paymentfont.min.css', array(), '1.2.5');
+  // wp_enqueue_style('paymentfont-css', get_template_directory_uri() . '/inc/paymentfont/css/paymentfont.min.css', array(), '1.2.5');
 
   wp_enqueue_script('font-awesome', '//use.fontawesome.com/releases/v5.7.2/js/all.js', array(), null);
 
-  // wp_enqueue_script('video-js-ie', '//vjs.zencdn.net/ie8/1.1.2/videojs-ie8.min.js', array(), '1.1.2', true );
+  wp_enqueue_script('kmc-navigation', get_template_directory_uri() . '/public/navigation.bundle.js', array(), filemtime(get_template_directory() . '/public/navigation.bundle.js'), true);
 
-  // wp_enqueue_script('video-js', '//vjs.zencdn.net/7.5.4/video.min.js', array(), '7.5.4', true );
-
-  wp_enqueue_script('aos-js', '//unpkg.com/aos@next/dist/aos.js', array(), null, true);
-
-  wp_enqueue_script('kmc-navigation', get_template_directory_uri() . '/js/navigation-min.js', array(), filemtime(get_template_directory() . '/js/navigation-min.js'), true);
-
-  wp_enqueue_script('kmc-site-scripts', get_template_directory_uri() . '/js/site-scripts-min.js', array('jquery'), filemtime(get_template_directory() . '/js/site-scripts-min.js'), true);
+  wp_enqueue_script('kmc-site', get_template_directory_uri() . '/public/site.bundle.js', array('jquery'), filemtime(get_template_directory() . '/public/site.bundle.js'), true);
 
   if (is_page()) { //Check if we are viewing a page
     global $wp_query;
@@ -167,16 +156,13 @@ function kmc_scripts()
     $template_name = get_post_meta($wp_query->post->ID, '_wp_page_template', true);
     if ($template_name == 'page-home.php') {
 
-      wp_enqueue_script('kmc-homepage-scripts', get_template_directory_uri() . '/js/homepage-scripts-min.js', array('jquery'), filemtime(get_template_directory() . '/js/homepage-scripts-min.js'), true);
+      wp_enqueue_script('kmc-homepage', get_template_directory_uri() . '/public/homepage.bundle.js', array('jquery'), filemtime(get_template_directory() . '/public/homepage.bundle.js'), true);
     }
   }
 
   if (is_checkout()) {
-
-    wp_enqueue_script('kmc-checkout-scripts', get_template_directory_uri() . '/js/checkout-scripts-min.js', array('jquery'), filemtime(get_template_directory() . '/js/checkout-scripts-min.js'), true);
+    wp_enqueue_script('kmc-checkout', get_template_directory_uri() . '/public/checkout.bundle.js', array('jquery'), filemtime(get_template_directory() . '/public/checkout.bundle.js'), true);
   }
-
-  wp_enqueue_script('kmc-skip-link-focus-fix', get_template_directory_uri() . '/js/skip-link-focus-fix.js', array(), filemtime(get_template_directory() . '/js/skip-link-focus-fix.js'), true);
 
   if (is_singular() && comments_open() && get_option('thread_comments')) {
     wp_enqueue_script('comment-reply');
@@ -199,7 +185,7 @@ function print_gtag()
       gtag('config', 'UA-142165292-1');
     </script>";
 }
-add_action('wp_footer', 'print_gtag');
+add_action('wp_head', 'print_gtag');
 
 /**
  * Filter the HTML script tags to add attributes.
@@ -222,8 +208,7 @@ function add_attribs_to_scripts($tag, $handle, $src)
 
   $defer_scripts = array(
     'kmc-scripts',
-    'google-fonts',
-    'aos-css',
+    'google-fonts'
   );
 
   $fontawesome = array(
@@ -257,25 +242,6 @@ function add_attribs_to_scripts($tag, $handle, $src)
   }
   return $tag;
 }
-
-/**
- * ------------------------------------------------------------------------
- *  Remove JQuery migrate
- * ------------------------------------------------------------------------
- */
-function kmc_remove_jquery_migrate($scripts)
-{
-  if (!is_admin() && isset($scripts->registered['jquery'])) {
-    $script = $scripts->registered['jquery'];
-
-    if ($script->deps) { // Check whether the script has any dependencies
-      $script->deps = array_diff($script->deps, array(
-        'jquery-migrate'
-      ));
-    }
-  }
-}
-add_action('wp_default_scripts', 'kmc_remove_jquery_migrate');
 
 /**
  * Custom template tags for this theme.

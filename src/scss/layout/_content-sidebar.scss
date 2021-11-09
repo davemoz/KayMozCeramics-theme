@@ -1,0 +1,24 @@
+#content {
+  .split-page {
+    .content-width {
+      grid-template-columns: 1fr;
+      @include widerThan($tabletSM) {
+        grid-template-columns: [ primary-start ] 8fr [ primary-end secondary-start ] 4fr [ secondary-end ];
+      }
+      .content-area {
+        grid-column: 1 / -1;
+        margin: 0;
+        @include widerThan($tabletSM) {
+          grid-column: primary-start / primary-end;
+        }
+      }
+      .widget-area {
+        grid-column: 1 / -1;
+        overflow: hidden;
+        @include widerThan($tabletSM) {
+          grid-column: secondary-start / secondary-end;
+        }
+      }
+    }
+  }
+}

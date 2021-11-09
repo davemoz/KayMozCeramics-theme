@@ -1,0 +1,15 @@
+{
+  "name": "dmozdzanowski/kay-moz-ceramics",
+  "description": "Official website of Kay Moz Ceramics",
+  "type": "project",
+  "require-dev": {
+    "php-stubs/woocommerce-stubs": "^5.9"
+  },
+  "authors": [
+    {
+      "name": "davemoz",
+      "email": "davejmoz@gmail.com"
+    }
+  ],
+  "require": {}
+}

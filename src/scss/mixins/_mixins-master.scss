@@ -1,0 +1,67 @@
+// Media Query mixins
+@mixin widerThan($var) {
+  @media screen and (min-width: #{$var}) {
+    @content;
+  }
+}
+
+@mixin between($min, $max) {
+  @media screen and (min-width: #{$min}) and (max-width: #{$max}) {
+    @content;
+  }
+}
+
+/* PX to REM font-size mixin */
+@mixin font-size($value) {
+  font-size: $value; /* add PX (or original value) as backup */
+
+  @if ($value is inherit) {
+    /* do nothing, "inherit" has no unit */
+  } @else {
+    font-size: remify($value);
+  }
+}
+
+// Usage: rem(16px);
+@function rem($size, $font__base-font-size: $font__base-font-size) {
+  @return #{$size / $font__base-font-size}rem;
+}
+
+// Usage: em(16px);
+@function em($size, $font__base-font-size: $font__base-font-size) {
+  @return #{$size / $font__base-font-size}em;
+}
+
+// Usage: @include remify(font-size, 16px);
+@mixin remify($property, $size, $font__base-font-size: $font__base-font-size) {
+  #{$property}: rem($size, $font__base-font-size);
+}
+
+// Usage: @include emify(font-size, 16px);
+@mixin emify($property, $size, $font__base-font-size: $font__base-font-size) {
+  #{$property}: em($size, $font__base-font-size);
+}
+
+/**
+ * Aspect ratio with fallback
+ */
+@mixin aspectRatio($widthNum: 3, $heightNum: 2) {
+  $ratioPercentage: ($heightNum / $widthNum) * 100%;
+
+  aspect-ratio: #{$widthNum} / #{$heightNum};
+
+  // Aspect-ratio fallback
+  @supports not (aspect-ratio: #{$widthNum} / #{$heightNum}) {
+    &::before {
+      float: left;
+      padding-top: $ratioPercentage;
+      content: '';
+    }
+
+    &::after {
+      display: block;
+      content: '';
+      clear: both;
+    }
+  }
+}

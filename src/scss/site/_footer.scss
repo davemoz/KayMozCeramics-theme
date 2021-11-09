@@ -1,0 +1,132 @@
+#colophon {
+  margin: 0;
+  padding: 0 0 3em;
+  width: 100%;
+  z-index: 99;
+  background-color: #fff;
+  .instagram-feed {
+    margin-bottom: 7em;
+    a {
+      box-shadow: none;
+    }
+  }
+  .newsletter-signup {
+    margin: 4em 0;
+    .newsletter-signup-wrap {
+      h2 {
+        text-align: center;
+        margin: 0;
+      }
+      & > p {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin: 0 auto;
+        width: 100%;
+        @include widerThan($mobileLG) {
+          flex-direction: row;
+          width: 60%;
+        }
+        .wpcf7-form-control-wrap {
+          display: flex;
+          width: 100%;
+          margin-right: 0;
+          margin-bottom: 10px;
+          @include widerThan($mobileLG) {
+            margin-bottom: 0;
+          }
+        }
+        .wpcf7-submit {
+          width: 100%;
+          background: $color__accent-dark;
+          margin-left: 0;
+          &:hover {
+            background: $color__accent-darker;
+          }
+          @include widerThan($mobileLG) {
+            width: 40%;
+            margin-left: 10px;
+          }
+        }
+        .ajax-loader {
+          margin: 0 0 0 10px;
+        }
+      }
+    }
+  }
+  .payment-methods {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin: 0 0 3em;
+    @include widerThan($mobileLG) {
+      flex-wrap: nowrap;
+    }
+    .pf {
+      font-size: 34px;
+      line-height: 1.3;
+      color: #9c9c9c;
+      margin-right: 10px;
+      &:last-child {
+        margin-right: 0;
+      }
+    }
+  }
+  .site-info {
+    font-size: 13px;
+    margin: 2em 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    text-align: center;
+    @include widerThan($mobileLG) {
+      flex-direction: row;
+    }
+    & > span {
+      margin-bottom: 15px;
+      @include widerThan($mobileLG) {
+        margin-bottom: 0;
+      }
+      & > a {
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+    }
+    .sep {
+      display: none;
+      margin: 0 10px;
+      opacity: 0.5;
+      @include widerThan($mobileLG) {
+        display: block;
+      }
+    }
+  }
+  .privacy {
+    font-size: 13px;
+    margin: 2em 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    flex-wrap: wrap;
+    text-align: center;
+    & > span {
+      margin-bottom: 5px;
+      @include widerThan($mobileLG) {
+        margin-bottom: 0;
+      }
+      & > a {
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+    }
+    .sep {
+      display: block;
+      margin: 0 10px;
+      opacity: 0.5;
+    }
+  }
+}

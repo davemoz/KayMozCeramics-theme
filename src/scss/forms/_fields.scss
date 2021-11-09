@@ -1,0 +1,219 @@
+input[type='text'],
+input[type='email'],
+input[type='url'],
+input[type='password'],
+input[type='search'],
+input[type='date'],
+input[type='tel'],
+input[type='number'],
+textarea {
+  box-sizing: border-box;
+  color: $color__text-input;
+  border: 1px solid $color__border-input;
+  border-radius: 3px;
+  font-size: 18px;
+  font-weight: 200;
+  padding: 10px;
+  width: 100%;
+  transition: border 0.4s ease;
+  &:focus {
+    border: 1px solid $color__border-input-focus;
+    color: $color__text-input-focus;
+    outline: none;
+  }
+  &::placeholder {
+    opacity: 0.6;
+  }
+}
+textarea {
+  max-height: 150px;
+}
+
+/* Removes the clear button from date inputs */
+input[type='date']::-webkit-clear-button {
+  display: none;
+}
+/* Removes the spin button */
+input[type='date']::-webkit-inner-spin-button {
+  display: none;
+}
+/* Always display the drop down caret */
+input[type='date']::-webkit-calendar-picker-indicator {
+  color: #2c3e50;
+}
+/* A few custom styles for date inputs */
+input[type='date'] {
+  appearance: none;
+  color: #95a5a6;
+  font-family: 'Helvetica', arial, sans-serif;
+  display: inline-block !important;
+  visibility: visible !important;
+}
+input[type='date']:focus {
+  color: #95a5a6;
+  box-shadow: none;
+}
+
+/* Contact Form */
+label {
+  font-weight: 200;
+  font-size: 16px;
+  cursor: pointer;
+  width: 100%;
+}
+input[type='date'] {
+  min-height: 49px;
+  max-height: 49px;
+}
+.wpcf7-recaptcha {
+  background-color: #f7f7f7;
+  padding: 20px 0;
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: center;
+}
+.grecaptcha-badge {
+  display: none;
+}
+span.wpcf7-list-item {
+  label {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+    width: 100%;
+  }
+  &.has-free-text {
+    margin: 0;
+  }
+  .wpcf7-free-text {
+    max-height: 30px;
+    padding: 5px;
+  }
+}
+
+/* Utility/reusable styles */
+.required {
+  color: red;
+}
+.wpcf7 {
+  form.spam {
+    .wpcf7-response-output {
+      margin: 0 0 1em;
+    }
+  }
+  p {
+    display: flex;
+    justify-content: center;
+    margin: 0;
+    padding: 0;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    &:nth-of-type(3),
+    &:nth-of-type(4) {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+  }
+  .wpcf7-exclusive-checkbox {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    .wpcf7-list-item {
+      margin: 0;
+      margin-top: 10px;
+    }
+  }
+  .wpcf7-acceptance {
+    .wpcf7-list-item {
+      margin: 0;
+    }
+  }
+  .col-push {
+    padding-top: 41px;
+    small {
+      display: block;
+    }
+  }
+}
+
+/* Checkbox/Radio Button Style */
+input[type='checkbox'],
+input[type='radio'] {
+  position: relative;
+  -webkit-appearance: none;
+  width: 16px;
+  height: 16px;
+  margin-right: 10px;
+  background: transparent;
+  border: 2px solid #e2e2e2;
+  cursor: pointer;
+  flex: 0 0 auto;
+  &:hover {
+    background: transparent;
+    border: 2px solid #a9a9a9;
+  }
+  &:checked {
+    border: 2px solid #c1c1c1;
+    background: $color__accent-dark;
+    &:hover {
+      border: 2px solid #a9a9a9;
+    }
+  }
+  &:focus {
+    outline: none;
+  }
+}
+input[type='checkbox'] {
+  border-radius: 4px;
+  width: 25px;
+  height: 25px;
+  &:before {
+    display: none;
+    content: '✓';
+    font-style: normal;
+    font-weight: 900;
+    font-variant: normal;
+    text-rendering: auto;
+    -webkit-font-smoothing: antialiased;
+    position: absolute;
+    font-size: 20px;
+    color: #fff;
+    top: -4px;
+    left: 1px;
+  }
+  &:checked {
+    &:before {
+      display: inline-block;
+    }
+  }
+}
+input[type='radio'] {
+  border-radius: 50px;
+}
+
+/* Checkout Select Styles */
+.form-row-first,
+.form-row-last {
+  width: 48%;
+  float: left;
+  margin-top: 0;
+}
+.form-row-first {
+  margin-right: 4%;
+}
+.select2-container--default {
+  .select2-selection--single {
+    padding: 10px;
+    height: auto;
+    .select2-selection__rendered {
+      padding-left: 0;
+    }
+    .select2-selection__arrow {
+      height: 100%;
+      margin-right: 8px;
+    }
+  }
+}

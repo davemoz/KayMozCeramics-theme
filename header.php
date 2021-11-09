@@ -68,18 +68,36 @@
               </div>
             </div>
             <div id="primary-menu-wrap">
-              <?php wp_nav_menu(array('theme_location' => 'primary', 'menu_id' => 'primary-menu', 'items_wrap' => '<ul id="%1$s" class="%2$s"><div class="content-width">%3$s</div></ul>', 'walker' => new KayMozCeramics_Nav_Walker(),)); ?>
-              <?php wp_nav_menu(array('theme_location' => 'social', 'menu_id' => 'social-menu', 'items_wrap' => '<ul id="%1$s" class="%2$s"><div class="content-width">%3$s</div></ul>', 'walker' => new KayMozCeramics_Nav_Walker(),)); ?>
+              <?php
+              if (class_exists('KayMozCeramics_Nav_Walker', false) && has_nav_menu('primary')) {
+                wp_nav_menu(array('theme_location' => 'primary', 'menu_id' => 'primary-menu', 'items_wrap' => '<ul id="%1$s" class="%2$s"><div class="content-width">%3$s</div></ul>', 'walker' => new KayMozCeramics_Nav_Walker(),));
+              } elseif (has_nav_menu('primary')) {
+                wp_nav_menu(array('theme_location' => 'primary', 'menu_id' => 'primary-menu', 'items_wrap' => '<ul id="%1$s" class="%2$s"><div class="content-width">%3$s</div></ul>', 'walker' => new KayMozCeramics_Nav_Walker(),));
+              }
+
+              if (class_exists('KayMozCeramics_Nav_Walker') && has_nav_menu('social')) {
+                wp_nav_menu(array('theme_location' => 'social', 'menu_id' => 'social-menu', 'items_wrap' => '<ul id="%1$s" class="%2$s"><div class="content-width">%3$s</div></ul>', 'walker' => new KayMozCeramics_Nav_Walker(),));
+              } elseif (has_nav_menu('social')) {
+                wp_nav_menu(array('theme_location' => 'social', 'menu_id' => 'social-menu', 'items_wrap' => '<ul id="%1$s" class="%2$s"><div class="content-width">%3$s</div></ul>', 'walker' => new KayMozCeramics_Nav_Walker(),));
+              }
+              ?>
             </div>
           </nav><!-- #site-navigation -->
 
           <div class="cart-navigation" aria-label="Cart">
-            <?php wp_nav_menu(array('theme_location' => 'cart', 'menu_id' => 'cart-nav', 'container' => 'div', 'container_id' => 'cart-menu-wrap', 'walker' => new KayMozCeramics_Nav_Walker(),)); ?>
+            <?php
+            if (class_exists('KayMozCeramics_Nav_Walker', false) && has_nav_menu('cart')) {
+              wp_nav_menu(array('theme_location' => 'cart', 'menu_id' => 'cart-nav', 'container' => 'div', 'container_id' => 'cart-menu-wrap', 'walker' => new KayMozCeramics_Nav_Walker(),));
+            } elseif (has_nav_menu('cart')) {
+              wp_nav_menu(array('theme_location' => 'cart', 'menu_id' => 'cart-nav', 'container' => 'div', 'container_id' => 'cart-menu-wrap', 'walker' => new KayMozCeramics_Nav_Walker(),));
+            }
+            ?>
           </div>
         </div><!-- .content-width -->
       </header><!-- #masthead -->
       <div class="intro--video">
         <video playsinline autoplay="" preload="none" controls="none" loop muted id="intro__video" poster="<?php echo get_template_directory_uri(); ?>/inc/vid/video-poster-04.jpg">
+          <source src="<?php echo get_template_directory_uri(); ?>/inc/vid/KMC-homepage-vid-05.avif" type="image/avif" />
           <source src="<?php echo get_template_directory_uri(); ?>/inc/vid/KMC-homepage-vid-05.webm" type="video/webm" />
           <source src="<?php echo get_template_directory_uri(); ?>/inc/vid/KMC-homepage-vid-05.ogg" type="video/ogg" />
           <source src="<?php echo get_template_directory_uri(); ?>/inc/vid/KMC-homepage-vid-05.mp4" type="video/mp4" />
@@ -127,13 +145,30 @@
               </div>
             </div>
             <div id="primary-menu-wrap">
-              <?php wp_nav_menu(array('theme_location' => 'primary', 'menu_id' => 'primary-menu', 'items_wrap' => '<ul id="%1$s" class="%2$s"><div class="content-width">%3$s</div></ul>', 'walker' => new KayMozCeramics_Nav_Walker(),)); ?>
-              <?php wp_nav_menu(array('theme_location' => 'social', 'menu_id' => 'social-menu', 'items_wrap' => '<ul id="%1$s" class="%2$s"><div class="content-width">%3$s</div></ul>', 'walker' => new KayMozCeramics_Nav_Walker(),)); ?>
+              <?php
+              if (class_exists('KayMozCeramics_Nav_Walker', false) && has_nav_menu('primary')) {
+                wp_nav_menu(array('theme_location' => 'primary', 'menu_id' => 'primary-menu', 'items_wrap' => '<ul id="%1$s" class="%2$s"><div class="content-width">%3$s</div></ul>', 'walker' => new KayMozCeramics_Nav_Walker(),));
+              } elseif (has_nav_menu('primary')) {
+                wp_nav_menu(array('theme_location' => 'primary', 'menu_id' => 'primary-menu', 'items_wrap' => '<ul id="%1$s" class="%2$s"><div class="content-width">%3$s</div></ul>', 'walker' => new KayMozCeramics_Nav_Walker(),));
+              }
+
+              if (class_exists('KayMozCeramics_Nav_Walker') && has_nav_menu('social')) {
+                wp_nav_menu(array('theme_location' => 'social', 'menu_id' => 'social-menu', 'items_wrap' => '<ul id="%1$s" class="%2$s"><div class="content-width">%3$s</div></ul>', 'walker' => new KayMozCeramics_Nav_Walker(),));
+              } elseif (has_nav_menu('social')) {
+                wp_nav_menu(array('theme_location' => 'social', 'menu_id' => 'social-menu', 'items_wrap' => '<ul id="%1$s" class="%2$s"><div class="content-width">%3$s</div></ul>', 'walker' => new KayMozCeramics_Nav_Walker(),));
+              }
+              ?>
             </div>
           </nav><!-- #site-navigation -->
 
           <div class="cart-navigation" aria-label="Cart">
-            <?php wp_nav_menu(array('theme_location' => 'cart', 'menu_id' => 'cart-nav', 'container' => 'div', 'container_id' => 'cart-menu-wrap', 'walker' => new KayMozCeramics_Nav_Walker(),)); ?>
+            <?php
+            if (class_exists('KayMozCeramics_Nav_Walker', false) && has_nav_menu('cart')) {
+              wp_nav_menu(array('theme_location' => 'cart', 'menu_id' => 'cart-nav', 'container' => 'div', 'container_id' => 'cart-menu-wrap', 'walker' => new KayMozCeramics_Nav_Walker(),));
+            } elseif (has_nav_menu('cart')) {
+              wp_nav_menu(array('theme_location' => 'cart', 'menu_id' => 'cart-nav', 'container' => 'div', 'container_id' => 'cart-menu-wrap', 'walker' => new KayMozCeramics_Nav_Walker(),));
+            }
+            ?>
           </div>
         </div>
       </header><!-- #masthead -->

@@ -1,0 +1,65 @@
+{
+  "name": "kaymozceramics",
+  "version": "1.0.0",
+  "description": "Official website of Kay Moz Ceramics.",
+  "main": "index.js",
+  "scripts": {
+    "dev": "webpack --watch --progress",
+    "build": "webpack",
+    "eslint": "eslint \"src/**/*.{js,jsx}\" --quiet --fix",
+    "wp-pot": "wp-pot --src 'kaymozceramics.php' --dest-file 'languages/kaymozceramics.pot' --domain 'kmc'"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/davemoz/KayMozCeramics-theme.git"
+  },
+  "author": "Dave Mozdzanowski",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/davemoz/KayMozCeramics-theme/issues"
+  },
+  "homepage": "https://github.com/davemoz/KayMozCeramics-theme#readme",
+  "devDependencies": {
+    "@babel/cli": "^7.16.0",
+    "@babel/core": "^7.16.0",
+    "@babel/preset-env": "^7.16.0",
+    "@wordpress/eslint-plugin": "^9.2.0",
+    "assert": "^2.0.0",
+    "babel-eslint": "^10.1.0",
+    "babel-loader": "^8.2.3",
+    "browser-sync": "^2.27.7",
+    "browser-sync-webpack-plugin": "^2.3.0",
+    "buffer": "^6.0.3",
+    "constants-browserify": "^1.0.0",
+    "css-loader": "^6.5.1",
+    "css-minimizer-webpack-plugin": "^3.1.2",
+    "eslint": "^7.0.0",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-prettier": "^4.0.0",
+    "eslint-webpack-plugin": "^3.1.0",
+    "file-loader": "^6.2.0",
+    "imagemin": "^8.0.1",
+    "mini-css-extract-plugin": "^2.4.4",
+    "os-browserify": "^0.3.0",
+    "path-browserify": "^1.0.1",
+    "postcss": "^8.3.11",
+    "postcss-loader": "^6.2.0",
+    "postcss-preset-env": "^6.7.0",
+    "prettier": "^2.4.1",
+    "sass": "^1.43.4",
+    "sass-loader": "^12.3.0",
+    "stream-browserify": "^3.0.0",
+    "style-loader": "^3.3.1",
+    "url-loader": "^4.1.1",
+    "util": "^0.12.4",
+    "webpack": "^5.63.0",
+    "webpack-cli": "^4.9.1",
+    "webpack-remove-empty-scripts": "^0.7.1",
+    "webpack-watched-glob-entries-plugin": "^2.2.2",
+    "wp-pot-cli": "^1.5.0"
+  },
+  "dependencies": {
+    "@babel/polyfill": "^7.12.1",
+    "aos": "^2.3.4"
+  }
+}
