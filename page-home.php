@@ -49,7 +49,7 @@ get_header(); ?>
 <section id="instagram-feed" class="section__content">
 	<div class="content-width">
 		<?php
-			echo do_shortcode( '[instagram-feed]', true );
+			echo do_shortcode( '[instagram-feed feed=1]', true );
 		?>
 	</div>
 </section>
