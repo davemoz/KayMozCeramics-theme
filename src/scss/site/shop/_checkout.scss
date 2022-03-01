@@ -66,10 +66,6 @@
 .checkout {
   clear: both;
   position: static !important;
-  padding-top: 1em;
-  @include widerThan($mobileLG) {
-    padding-top: 3em;
-  }
   #customer_details {
     float: left;
     width: 100%;
@@ -187,11 +183,15 @@
         }
         .order-total {
           & > th {
-            font-weight: 700;
             background: $color__accent-hover;
+            color: $color__accent-darker;
+            font-family: 'Montserrat-Bold';
+            font-weight: 700;
           }
           & > td {
             background: $color__accent-hover;
+            color: $color__accent-darker;
+            font-family: 'Montserrat-Bold';
           }
         }
       }
