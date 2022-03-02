@@ -24,7 +24,12 @@ module.exports = {
   },
   target: 'node',
   context: __dirname,
-  entry: WebpackWatchedGlobEntries.getEntries([path.resolve(__dirname, 'src/scss/style.scss'), path.resolve(__dirname, 'src/scss/woocommerce.scss'), path.resolve(__dirname, 'src/js/src-single/*.js'), path.resolve(__dirname, 'src/js/*.js')]),
+  entry: WebpackWatchedGlobEntries.getEntries([
+    path.resolve(__dirname, 'src/scss/style.scss'),
+    path.resolve(__dirname, 'src/scss/woocommerce.scss'),
+    path.resolve(__dirname, 'src/js/src-single/*.js'),
+    path.resolve(__dirname, 'src/js/*.js'),
+  ]),
   output: {
     publicPath: '/wp-content/themes/KayMozCeramics/',
     path: path.resolve(__dirname),
